@@ -1,0 +1,41 @@
+{
+  "name": "detect-installer",
+  "version": "0.1.0",
+  "description": "Figure how ligo was installed",
+  "esy": {
+    "build": "dune build -p #{self.name}",
+    "buildDev": "pesy build",
+    "release": {
+      "rewritePrefix": true,
+      "bin": [
+        "DetectInstallerApp"
+      ]
+    }
+  },
+  "buildDirs": {
+    "src/lib": {},
+    "src/bin": {
+      "imports": [
+        "DetectInstaller = require('detect-installer/src/lib')"
+      ],
+      "bin": {
+        "DetectInstallerApp": "DetectInstallerApp.re"
+      }
+    }
+  },
+  "scripts": {
+    "start": "esy x DetectInstallerApp"
+  },
+  "dependencies": {
+    "@opam/dune": "*",
+    "@opam/reason": "*",
+    "@pesy/esy-pesy": "esy/pesy",
+    "ocaml": "4.14.0"
+  },
+  "devDependencies": {
+    "@opam/ocaml-lsp-server": "*"
+  },
+  "resolutions": {
+    "@opam/pastel": "reasonml/reason-native:pastel.opam#a0ddab6ab25237961e32d8732b0a222ec2372d4a"
+  }
+}
